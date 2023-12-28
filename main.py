@@ -31,7 +31,23 @@ while True:
         for user in users:
             print(f"ID: {user[0]}, Name: {user[1]}, Email: {user[2]}")
 
-    
+    elif user_input == "2":
+        name = input(f"{Fore.GREEN}Enter user name:{Style.RESET_ALL} ")
+        email = input(f"{Fore.GREEN}Enter user email:{Style.RESET_ALL} ")
+        db.insert_user(name, email)
+        print(f"\n{Fore.GREEN}User inserted successfully!{Style.RESET_ALL}")
+
+    elif user_input == "3":
+        user_id = input(f"{Fore.GREEN}Enter user ID:{Style.RESET_ALL} ")
+        new_email = input(f"{Fore.GREEN}Enter new email:{Style.RESET_ALL} ")
+        db.update_user_email(user_id, new_email)
+        print(f"\n{Fore.GREEN}User email updated successfully!{Style.RESET_ALL}")
+
+    elif user_input == "4":
+        user_id = input(f"{Fore.GREEN}Enter user ID to delete:{Style.RESET_ALL} ")
+        db.delete_user(user_id)
+        print(f"\n{Fore.GREEN}User deleted successfully!{Style.RESET_ALL}")
+   
 
     else:
         print(f"\n{Fore.RED}Invalid command. Please enter a valid command number.{Style.RESET_ALL}")
