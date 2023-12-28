@@ -28,3 +28,11 @@ class Database:
     def delete_user(self, user_id):
         query = f"DELETE FROM users WHERE id = {user_id}"
         self.execute_query(query)
+
+    def fetch_orders_by_user(self, user_id):
+        query = f"SELECT * FROM orders WHERE user_id = {user_id}"
+        self.cursor.execute(query)
+        orders = self.cursor.fetchall()
+        return orders
+
+
