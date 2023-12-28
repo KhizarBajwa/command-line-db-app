@@ -1,4 +1,5 @@
 # database.py
+
 import sqlite3
 
 class Database:
@@ -10,10 +11,8 @@ class Database:
         self.cursor.execute(query)
         self.conn.commit()
 
-    # Add other database-related methods as needed
-        
-    def select_all_users(self):
-        query = "SELECT * FROM users"
+    def fetch_all(self, table):
+        query = f"SELECT * FROM {table}"
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         return rows
