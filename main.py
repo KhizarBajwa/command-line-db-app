@@ -20,4 +20,18 @@ def print_commands():
 # Instantiate the Database class
 db = Database("app.db")
 
-print_commands()
+while True:
+    print_commands()
+
+    user_input = input(f"\n{Fore.GREEN}Enter the command number:{Style.RESET_ALL} ")
+
+    if user_input == "1":
+        users = db.fetch_all("users")
+        print(f"\n{Fore.BLUE}All Users:{Style.RESET_ALL}")
+        for user in users:
+            print(f"ID: {user[0]}, Name: {user[1]}, Email: {user[2]}")
+
+    
+
+    else:
+        print(f"\n{Fore.RED}Invalid command. Please enter a valid command number.{Style.RESET_ALL}")
