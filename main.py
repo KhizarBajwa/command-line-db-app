@@ -1,13 +1,15 @@
-# main.py
-
 import os
 import sys
 import datetime
+from pathlib import Path  # Import Path from pathlib for handling paths
 from database import Database
 from colorama import Fore, Style, init
+from report_generator import ReportGenerator
 
 # Initialize colorama for colored output
 init(autoreset=True)
+
+
 
 def print_commands():
     print(f"\n{Fore.BLUE}Available Commands:{Style.RESET_ALL}")
@@ -18,7 +20,8 @@ def print_commands():
     print(f"5. {Fore.CYAN}Fetch orders by user{Style.RESET_ALL}")
     print(f"6. {Fore.RED}Execute custom query{Style.RESET_ALL}")
     print(f"7. {Fore.RED}Display Application Info{Style.RESET_ALL}")
-    print(f"8. {Fore.RED}Exit{Style.RESET_ALL}")
+    print(f"8. {Fore.CYAN}Generator Report {Style.RESET_ALL}")
+    print(f"9. {Fore.RED}Exit{Style.RESET_ALL}")
 
 def execute_custom_query(db):
     os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
@@ -37,6 +40,42 @@ def execute_custom_query(db):
 
     input("\nPress Enter to continue...")  # Wait for user input before clearing the screen
 
+def generate_report(db, format):
+    os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+
+    if format not in ['csv', 'xlsx']:
+        print(f"\n{Fore.RED}Invalid report format. Please choose 'csv' or 'excel'.{Style.RESET_ALL}")
+        return
+
+    tables = db.get_table_names()
+    print("\nTables:")
+    for table in tables:
+        print(f"{table}")
+
+    table_name = input(f"\nEnter the table name for the report:{Fore.GREEN} ")
+    
+    if table_name not in tables:
+        print(f"\n{Fore.RED}Invalid table name. Please choose a valid table.{Style.RESET_ALL}")
+        return
+
+    # Create a 'report' folder if it doesn't exist
+    report_folder = Path("report")
+    report_folder.mkdir(exist_ok=True)
+
+    # Include current datetime in the filename for uniqueness
+    current_datetime = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    filename = report_folder / f"report_{table_name}_{current_datetime}.{format}"
+
+    if format == 'csv':
+        data = db.fetch_all(table_name)
+        ReportGenerator.generate_csv(data, filename)
+        print(f"\n{Fore.GREEN}CSV report generated successfully!{Style.RESET_ALL}")
+    elif format == 'excel' or format == 'xlsx':
+        data = db.fetch_all(table_name)
+        ReportGenerator.generate_excel(data, filename)
+        print(f"\n{Fore.GREEN}Excel report generated successfully!{Style.RESET_ALL}")
+
+    input("\nPress Enter to continue...")  # Wait for user input before clearing the screen
 def display_info(db):
     os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
     tables = db.get_table_names()
@@ -70,6 +109,9 @@ db = Database("app.db")
 if len(sys.argv) > 1:
     if sys.argv[1] in ['-h', '--help']:
         display_help()
+
+
+
 
 while True:
     # os.system('cls' if os.name == 'nt' else 'clear')  # Do not clear screen here
@@ -130,6 +172,10 @@ while True:
         display_info(db)
 
     elif user_input == "8":
+        format = input(f"\n{Fore.GREEN}Enter report format (csv or xlsx for excel):{Style.RESET_ALL} ")
+        generate_report(db, format)
+
+    elif user_input == "9":
         print(f"\n{Fore.RED}Exiting the program. Goodbye!{Style.RESET_ALL}")
         break
 
