@@ -9,6 +9,23 @@ from report_generator import ReportGenerator
 # Initialize colorama for colored output
 init(autoreset=True)
 
+def print_welcome_message():
+    os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+    print(f"\n{Fore.BLUE}Welcome to the Command-Line Database Application!{Style.RESET_ALL}")
+    print("\nBasic Instructions:")
+    print("- Enter the command number to perform an action.")
+    print("- Type '-h' or '--help' to display the help message.")
+    print("- Follow on-screen prompts for additional inputs.")
+    print("- Use '6' to execute custom SQL queries.")
+    print("- Use '8' to generate reports in CSV or Excel format.")
+    print("- Type '9' to exit the program.\n")
+    
+    # Example for custom queries
+    print("Example for Custom Query (Command 6):")
+    print("You can enter SQL queries to retrieve specific data from the database.")
+    print("For example, you can try the following query:")
+    print(f"{Fore.GREEN}SELECT * FROM users WHERE email LIKE '%gmail.com%';{Style.RESET_ALL}")
+    print("This query fetches all users with email addresses containing 'gmail.com'.\n")
 
 
 def print_commands():
@@ -110,7 +127,8 @@ if len(sys.argv) > 1:
     if sys.argv[1] in ['-h', '--help']:
         display_help()
 
-
+# Display welcome message
+print_welcome_message()
 
 
 while True:
