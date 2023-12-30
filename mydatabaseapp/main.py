@@ -1,10 +1,14 @@
+
 import os
 import sys
 import datetime
 from pathlib import Path  # Import Path from pathlib for handling paths
-from database import Database
 from colorama import Fore, Style, init
-from report_generator import ReportGenerator
+
+
+from mydatabaseapp.database import Database
+from mydatabaseapp.report_generator import ReportGenerator
+
 
 # Initialize colorama for colored output
 init(autoreset=True)
@@ -121,11 +125,17 @@ def display_help():
     print_commands()
 
 # Instantiate the Database class
-db = Database("app.db")
+db_path = os.path.join("data", "app.db")
+db = Database(db_path)
 
 if len(sys.argv) > 1:
     if sys.argv[1] in ['-h', '--help']:
         display_help()
+
+
+
+
+
 
 # Display welcome message
 print_welcome_message()
@@ -201,3 +211,5 @@ while True:
         print(f"\n{Fore.RED}Invalid command. Please enter a valid command number.{Style.RESET_ALL}")
 
     # os.system('cls' if os.name == 'nt' else 'clear')  # Do not clear screen here
+    
+sys.exit(1)
