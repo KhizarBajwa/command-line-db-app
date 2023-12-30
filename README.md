@@ -109,3 +109,28 @@ if you want to have your own database from step 1 then follow following
 
 --------------------------------------------------------------------------
 
+
+
+## Screen shots
+
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/df0ec493-33ec-4d09-9280-7be3a9f1af16)
+
+give command as 'mydatabaseapp' and press enter
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/760dbc43-74b9-4191-a340-5bbb9d4813ed)
+
+Welcome Screen
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/f4670f32-0d34-45d1-8670-023eda89d042)
+
+enter '-h' to view all commands
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/bbc02599-d6d4-4a26-a503-401b604ca2dc)
+
+enter '1' to view all users from database table
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/6966fe58-e689-400e-b373-1bd6311188cb)
+
+enter '5' to get all orders of the users
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/c158c541-47f0-4922-b3b4-fee2516a1cbc)
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/7e4ff15f-8dea-47ec-870c-44cc35fc2275)
+![image](https://github.com/KhizarBajwa/command-line-db-app/assets/48625072/d140636f-df77-4f83-9d52-63e4ffdc8a65)
+
+And reset you can explore on your own !!!
+
