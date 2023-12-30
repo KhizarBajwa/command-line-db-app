@@ -6,8 +6,9 @@ from pathlib import Path  # Import Path from pathlib for handling paths
 from colorama import Fore, Style, init
 
 
-from mydatabaseapp.database import Database
-from mydatabaseapp.report_generator import ReportGenerator
+# from mydatabaseapp.database import Database
+from mydatabaseapp.database.database import Database
+from mydatabaseapp.report_generator.report_generator import ReportGenerator
 
 
 # Initialize colorama for colored output

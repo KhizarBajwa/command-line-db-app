@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'mydatabaseapp = mydatabaseapp.main:main',
+            'mydatabaseapp = mydatabaseapp.main.main:main',
         ],
     },
     install_requires=[
